@@ -5,7 +5,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt # we only need pyplot
 sb.set() # set the default Seaborn style for graphics
 
-cardioData = pd.read_csv('C:\\Users\\chiaw\\anaconda_projects\\Mini Project\\cardio_train_fixed.csv')
+cardioData = pd.read_csv('cardio_train_fixed.csv')
 cardioData.head()
 
 print("Data type : ", type(cardioData))
