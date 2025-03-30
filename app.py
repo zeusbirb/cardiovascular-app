@@ -89,3 +89,5 @@ if st.button("Predict"):
             st.error("High Risk of Cardiovascular Disease")
         else:  # Low Risk
             st.success("Low Risk of Cardiovascular Disease")
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
