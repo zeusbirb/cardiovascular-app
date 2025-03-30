@@ -61,10 +61,10 @@ st.title("Cardiovascular Disease Prediction App")
 st.write("Enter patient details to predict the risk of cardiovascular disease.")
 
 # Input fields
-age = st.slider("Age (in years)", 30, 80, 50)
+age_years = st.slider("Age (in years)", 10, 100, 30)
 weight = st.number_input("Weight (kg)", 30, 150, 70)
 cholesterol = st.selectbox("Cholesterol Level", [1, 2, 3])  # 1: Normal, 2: Above Normal, 3: Well Above Normal
-BMI = st.number_input("BMI", 16, 50, 25)
+BMI = st.number_input("BMI", 10, 50, 20)
 ap_hi = st.number_input("Systolic Blood Pressure (ap_hi)", 90, 200, 120)
 ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", 50, 130, 80)
 
