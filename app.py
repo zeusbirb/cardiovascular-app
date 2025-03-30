@@ -84,7 +84,8 @@ if st.button("Predict"):
     
     try:
         result = predict_cvd(cardioNumData)
-        if result == 1:  #High Risk
-            st.error("High Risk of Cardiovascular Disease")  #Red box
-        else:  #Low Risk
-            st.success("Low Risk of Cardiovascular Disease")  #Green box
+        
+        if result == 1:  # High Risk
+            st.error("High Risk of Cardiovascular Disease")
+        else:  # Low Risk
+            st.success("Low Risk of Cardiovascular Disease")
