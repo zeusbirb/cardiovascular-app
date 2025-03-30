@@ -49,30 +49,42 @@ import streamlit as st
 
 # Function to make predictions
 def predict_cvd(cardioNumData):
-    # Convert input data to a DataFrame
-    input_data = pd.DataFrame([cardioNumData], columns=["age_years", "weight", "cholesterol", "BMI" "ap_hi", "ap_lo"])
-    # Make prediction
-    prediction = rf.predict(input_data)[0]
-    return "Has Cardiovascular Disease" if prediction == 1 else "No Cardiovascular Disease"
+    """Handle both dictionary and list inputs"""
+    if isinstance(cardioNumData, dict):
+        # Dictionary input (most reliable)
+        df = pd.DataFrame([cardioNumData])
+    else:
+        # List/array input (must match column order)
+        df = pd.DataFrame([cardioNumData], 
+                         columns=["age_years", "weight", "cholesterol", "BMI", "ap_hi", "ap_lo"])
+    return rf.predict(df)[0]
 
 # Streamlit UI
-st.title("Cardiovascular Disease Prediction")
-st.write("Enter patient details to predict the risk of cardiovascular disease.")
+st.title("Cardiovascular Risk Prediction")
 
 # Input fields
-age_years = st.slider("Age (in years)", 10, 100, 30)
+age_years = st.slider("Age", 30, 80, 50)
 weight = st.number_input("Weight (kg)", 30, 150, 70)
-cholesterol = st.selectbox("Cholesterol Level", [1, 2, 3])  # 1: Normal, 2: Above Normal, 3: Well Above Normal
-BMI = st.number_input("BMI", 10, 50, 20)
-ap_hi = st.number_input("Systolic Blood Pressure (ap_hi)", 90, 200, 120)
-ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", 50, 130, 80)
+cholesterol = st.selectbox("Cholesterol", [1, 2, 3])
+BMI = st.number_input("BMI", 16, 50, 25)
+ap_hi = st.number_input("Systolic BP", 90, 200, 120)
+ap_lo = st.number_input("Diastolic BP", 50, 130, 80)
 
-#gluc = st.selectbox("Glucose Level", [1, 2, 3])  # 1: Normal, 2: Above Normal, 3: Well Above Normal
-#smoke = st.radio("Do you smoke?", [0, 1])
-#alco = st.radio("Do you consume alcohol?", [0, 1])
-#active = st.radio("Are you physically active?", [0, 1])
-
-# Predict button
 if st.button("Predict"):
-    result = predict_cvd(cardioNumData)
-    st.subheader(f"Prediction: {result}")
+    # Package as dictionary (recommended)
+    cardioNumData = {
+        'age_years': age_years,
+        'weight': weight,
+        'cholesterol': cholesterol,
+        'BMI': BMI,
+        'ap_hi': ap_hi,
+        'ap_lo': ap_lo
+    }
+    
+    st.write("Debug Input:", cardioNumData)  # Verify before prediction
+    
+    try:
+        result = predict_cvd(cardioNumData)
+        st.success("High Risk" if result == 1 else "Low Risk")
+    except Exception as e:
+        st.error(f"Prediction failed: {str(e)}")
