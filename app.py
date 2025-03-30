@@ -48,16 +48,15 @@ print(classification_report(y_test, y_pred_rf))
 import streamlit as st
 
 # Function to make predictions
-def predict_cvd(age_years, weight, cholesterol, BMI, ap_hi, ap_lo):
+def predict_cvd(cardioNumData):
     # Convert input data to a DataFrame
-    input_data = pd.DataFrame([[age_years, weight, cholesterol, BMI, ap_hi, ap_lo]],
-                              columns=["age_years", "weight", "cholesterol", "BMI" "ap_hi", "ap_lo"])
+    input_data = pd.DataFrame([cardioNumData], columns=["age_years", "weight", "cholesterol", "BMI" "ap_hi", "ap_lo"])
     # Make prediction
     prediction = rf.predict(input_data)[0]
     return "Has Cardiovascular Disease" if prediction == 1 else "No Cardiovascular Disease"
 
 # Streamlit UI
-st.title("Cardiovascular Disease Prediction App")
+st.title("Cardiovascular Disease Prediction")
 st.write("Enter patient details to predict the risk of cardiovascular disease.")
 
 # Input fields
@@ -75,5 +74,5 @@ ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", 50, 130, 80)
 
 # Predict button
 if st.button("Predict"):
-    result = predict_cvd(age_years, weight, cholesterol, BMI, ap_hi, ap_lo)
+    result = predict_cvd(cardioNumData)
     st.subheader(f"Prediction: {result}")
