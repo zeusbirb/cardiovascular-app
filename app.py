@@ -73,7 +73,6 @@ ap_hi = st.number_input("Systolic BP", 90, 200, 120)
 ap_lo = st.number_input("Diastolic BP", 50, 130, 80)
 
 if st.button("Predict"):
-    #Packaged as dictionary
     cardioNumData = {
         'age_years': age_years,
         'weight': weight,
@@ -86,6 +85,6 @@ if st.button("Predict"):
     try:
         result = predict_cvd(cardioNumData)
         if result == 1:  #High Risk
-        st.error("High Risk of Cardiovascular Disease")  #Red box
+            st.error("High Risk of Cardiovascular Disease")  #Red box
         else:  #Low Risk
-        st.success("Low Risk of Cardiovascular Disease")  #Green box
+            st.success("Low Risk of Cardiovascular Disease")  #Green box
