@@ -61,12 +61,14 @@ def predict_cvd(cardioNumData):
 
 # Streamlit UI
 st.title("Cardiovascular Risk Prediction")
+st.write("Done by aasiol")
+st.write("Enter patient details to predict the risk of cardiovascular disease.")
 
 # Input fields
-age_years = st.slider("Age", 30, 80, 50)
+age_years = st.slider("Age", 10, 100, 50)
 weight = st.number_input("Weight (kg)", 30, 150, 70)
 cholesterol = st.selectbox("Cholesterol", [1, 2, 3])
-BMI = st.number_input("BMI", 16, 50, 25)
+BMI = st.number_input("BMI", 10, 50, 25)
 ap_hi = st.number_input("Systolic BP", 90, 200, 120)
 ap_lo = st.number_input("Diastolic BP", 50, 130, 80)
 
@@ -80,8 +82,6 @@ if st.button("Predict"):
         'ap_hi': ap_hi,
         'ap_lo': ap_lo
     }
-    
-    st.write("Debug Input:", cardioNumData)  # Verify before prediction
     
     try:
         result = predict_cvd(cardioNumData)
