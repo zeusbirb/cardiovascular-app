@@ -45,29 +45,6 @@ y_pred_rf = rf.predict(X_test)
 print('RF Accuracy:', accuracy_score(y_test, y_pred_rf))
 print(classification_report(y_test, y_pred_rf))
 
-#Using Hyperparameter Tuning to further improve RF Classifier using RandomizedSearchCV
-from sklearn.model_selection import RandomizedSearchCV #randomly samples hyperparameters instead of testing everyth
-from scipy.stats import randint
-
-params = {
-    'n_estimators': [100, 200, 300],
-    'max_depth': [None, 10, 20],
-    'min_samples_split': [2, 5, 10]
-}
-randomsearch = RandomizedSearchCV(rf, params, cv=5, scoring='accuracy')
-randomsearch.fit(X_train, y_train)
-
-print(randomsearch.best_params_)
-best_rf = randomsearch.best_estimator_
-
-#Saving the best rf model
-import joblib
-
-joblib.dump(best_rf, 'bestrfmodel.pkl')
-
-#Assigning the model to a variable
-rfModel = joblib.load('bestrfmodel.pkl')
-
 import streamlit as st
 
 # Function to make predictions
