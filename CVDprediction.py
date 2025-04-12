@@ -69,7 +69,7 @@ def predict_cvd(cardioNumData):
     else:
         #List/array input
         df = pd.DataFrame([cardioNumData], 
-                         columns=["age_years", "weight", "cholesterol", "BMI", "ap_hi", "ap_lo"])
+                         columns=["age_years", "gender", "height", "weight", "cholesterol", "BMI", "ap_hi", "ap_lo"])
     return rf.predict(df)[0]
 
 #Streamlit UI
