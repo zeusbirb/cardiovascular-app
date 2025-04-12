@@ -79,6 +79,7 @@ st.write("Enter patient details to predict the risk of cardiovascular disease.")
 
 #Input fields
 age_years = st.slider("Age", 10, 100, 50)
+gender = st.selectbox("Gender", [1, 2], format_func=lambda x: "Female" if x == 1 else "Male")
 weight = st.number_input("Weight (kg)", 30, 150, 70)
 height_cm = st.number_input("Height (cm)", 100, 250, 170)
 cholesterol = st.selectbox("Cholesterol", [1, 2, 3])
@@ -94,7 +95,7 @@ if st.button("Predict"):
     cardioNumData = {
         'age_years': age_years,
         'gender': gender,
-        'height': height,
+        'height': height_cm,
         'weight': weight,
         'cholesterol': cholesterol,
         'BMI': BMI,
