@@ -74,8 +74,8 @@ def predict_cvd(cardioNumData):
 
 #Streamlit UI
 st.title("Cardiovascular Risk Prediction")
-st.write("Done by Chia Weng Choong, Julian Fun, Geraldine Lin, Jia Xuan Lim")
-st.write("Enter patient details to predict the risk of cardiovascular disease.")
+st.write("Done by Chia Weng Choong, Julian Fun, Geraldine Lin and Jia Xuan Lim")
+st.write("Enter your details to predict the risk of cardiovascular disease.")
 
 #Input fields
 age_years = st.slider("Age", 10, 100, 50)
