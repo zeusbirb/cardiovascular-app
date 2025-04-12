@@ -93,6 +93,8 @@ st.write(f"Calculated BMI: {BMI:.1f}")  # Display BMI for transparency, rounded 
 if st.button("Predict"):
     cardioNumData = {
         'age_years': age_years,
+        'gender': gender,
+        'height': height,
         'weight': weight,
         'cholesterol': cholesterol,
         'BMI': BMI,
