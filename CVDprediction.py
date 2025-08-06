@@ -74,7 +74,7 @@ def predict_cvd(cardioNumData):
 
 #Streamlit UI
 st.title("Cardiovascular Risk Prediction")
-st.write("Done by Chia Weng Choong, Julian Fun, Geraldine Lin and Jia Xuan Lim")
+st.write("Done by Chia Weng Choong")
 st.write("Enter your details to predict the risk of cardiovascular disease.")
 
 #Input fields
@@ -111,4 +111,5 @@ if st.button("Predict"):
         else:  # Low Risk
             st.success("Low Risk of Cardiovascular Disease")
     except Exception as e:
+
         st.error(f"An error occurred: {str(e)}")
